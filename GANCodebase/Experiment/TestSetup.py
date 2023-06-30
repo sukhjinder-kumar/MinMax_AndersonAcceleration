@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(1,'/Users/sukhkuma/Dev/Programming/Research/MinMax_AA/MinMax_AndersonAcceleration/GANCodebase')
 
-from Model.UntrainedModel.TestGAN import TestGAN
+from Model.UntrainedModel.TestNN import TestNN
 from Dataset.LoadMnistDataset import mnistTrainDs, mnistTestDs, mnistTrainDl, mnistTestDl
 
 import torch
@@ -29,7 +29,7 @@ def TrainModel(dl, f, num_epochs):
     return np.array(epochs), np.array(losses)
 
 
-f = TestGAN()
+f = TestNN()
 epochs, losses = TrainModel(mnistTrainDl, f, num_epochs=2)
 
 # Viz
@@ -51,5 +51,5 @@ for x,y in mnistTestDs:
 print(f"Test Accuracy: {correct/len(mnistTestDs)*100}")
 
 # Save model
-saveModelPath = "./Model/TrainedModel/TestGAN.pt"
+saveModelPath = "./Model/TrainedModel/TestNN.pt"
 torch.save(f.state_dict(), saveModelPath)

@@ -5,7 +5,7 @@ Torch model definition
 import torch
 import torch.nn as nn
 
-class TestGAN(nn.Module):
+class TestNN(nn.Module):
     '''
     For MNIST dataset
     '''
