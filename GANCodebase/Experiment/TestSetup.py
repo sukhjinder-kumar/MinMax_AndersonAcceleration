@@ -1,5 +1,8 @@
-from models import TestNN
-from loadDatasets import mnistTrainDs, mnistTestDs, mnistTrainDl, mnistTestDl
+import sys
+sys.path.insert(1,'/Users/sukhkuma/Dev/Programming/Research/MinMax_AA/MinMax_AndersonAcceleration/GANCodebase')
+
+from Model.UntrainedModel.TestGAN import TestGAN
+from Dataset.LoadMnistDataset import mnistTrainDs, mnistTestDs, mnistTrainDl, mnistTestDl
 
 import torch
 import torch.nn as nn
@@ -26,7 +29,7 @@ def TrainModel(dl, f, num_epochs):
     return np.array(epochs), np.array(losses)
 
 
-f = TestNN()
+f = TestGAN()
 epochs, losses = TrainModel(mnistTrainDl, f, num_epochs=2)
 
 # Viz
@@ -36,6 +39,8 @@ plt.plot(epochs,losses,'o--')
 plt.xlabel('Epoch Number')
 plt.ylabel('Cross Entropy')
 plt.title('Avg Cross Entropy across dataset')
+saveFigPath = "./Figure/Experiment/TestSetup/EpochLossPlot.png"
+plt.savefig(saveFigPath) # Save viz
 plt.show()
 
 # Accuracy
@@ -44,3 +49,7 @@ for x,y in mnistTestDs:
     if y.argmax() == f(x).argmax():
         correct += 1
 print(f"Test Accuracy: {correct/len(mnistTestDs)*100}")
+
+# Save model
+saveModelPath = "./Model/TrainedModel/TestGAN.pt"
+torch.save(f.state_dict(), saveModelPath)

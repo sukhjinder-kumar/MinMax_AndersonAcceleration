@@ -1,27 +1,44 @@
 # MinMax GAN Codebase
 
+Table of Content -
+<>
+
 ## Installation 
 
-`ML` is virtual environment. To install git clone the repo. Create virtual env using `python -m vevn <envName>`, followed by `source <envName>/bin/activate` to use that environement (use `deactivate` to close that environment). To install dependencies for this repo do: `pip install requirements.txt`. You are all set to go!
+To install git clone the repo. Create a virtual env using `python -m vevn <envName>`, followed by `source <envName>/bin/activate` to use that environement (use `deactivate` to close that environment). To install dependencies for this repo do: `pip install -r requirements.txt`. You are all set to go!
 
 ## Overview
 
 ```txt
-./
-| - ML
-    | - ....
-| - algorithms.py
-| - loadDatasets.py
-| - models.py
-| - DatasetFiles
-    | - MNIST
-        | - training.pt
-        | - test.pt
-| - experimentTest.py
-| - README.md
-| - TODO.md
+.
+└── GANCode/
+    ├── Dataset/
+    │   ├── DatasetFiles
+    │   ├── LoadMnistDataset.py
+    │   └── ...
+    ├── Model/
+    │   ├── TrainedModel/
+    │   │   └── TestGAN.pt
+    │   └── UntrainedModel/
+    │       ├── TestGAN.py
+    │       └── ...
+    ├── Algorithm/
+    │   ├── algorithm1.py
+    │   └── ...
+    ├── Experiment/
+    │   ├── TestSetup.py
+    │   └── ...
+    ├── Figure/
+    │   ├── Experiment/
+    │   │   ├── TestSetup/
+    │   │   │   └── TestSetup.png
+    │   │   └── ...
+    │   └── ...
+    ├── README.md
+    ├── MLEnv/
+    └── requirements.py
 ```
 
-Names of file and directories are self explanatory. Algo goes in `algorithms.py` file, torch model defintion goes in `models.py`, dataset handling goes in `loadDatasets.py`, raw data goes in `DatasetFiles`.
+Names of file and directories are self explanatory. Algorithm goes in `Algorithm/<AlgoName>.py` file, torch model defintion goes in `Model/UntrainedModel/<ModelName>.py`, trained model stored in its counter part, dataset handling goes in `Dataset/Load<DatasetName>.py`, whereas raw data goes in `DatasetFiles`. Figures goes in `Figure` folder. All the testing, experiments like finding inception score goes in `Experiment` folder.
 
-All files named `experiment<>.py` are experiment files like comparing ADAM and say SGD
+@TODO: Define format for each Directory, like what all should be exported especially in algorithms, datasets, and models

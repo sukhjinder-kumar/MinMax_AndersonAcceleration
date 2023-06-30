@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 # MNIST
 
-mnistPath = "./DatasetFiles/MNIST"
+mnistPath = "./Dataset/DatasetFiles/MNIST"
 mnistTrainPath = mnistPath + "/training.pt"
 mnistTestPath = mnistPath + "/test.pt"
 
