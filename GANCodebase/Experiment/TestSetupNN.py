@@ -39,7 +39,7 @@ plt.plot(epochs,losses,'o--')
 plt.xlabel('Epoch Number')
 plt.ylabel('Cross Entropy')
 plt.title('Avg Cross Entropy across dataset')
-saveFigPath = "./Figure/Experiment/TestSetup/EpochLossPlot.png"
+saveFigPath = "./Figure/Experiment/TestSetupNN/EpochLossPlot.png"
 plt.savefig(saveFigPath) # Save viz
 plt.show()
 

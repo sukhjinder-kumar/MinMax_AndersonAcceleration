@@ -26,12 +26,12 @@ To install git clone the repo. Create a virtual env using `python -m vevn <envNa
     │   ├── algorithm1.py
     │   └── ...
     ├── Experiment/
-    │   ├── TestSetup.py
+    │   ├── TestSetupNN.py
     │   └── ...
     ├── Figure/
     │   ├── Experiment/
-    │   │   ├── TestSetup/
-    │   │   │   └── TestSetup.png
+    │   │   ├── TestSetupNN/
+    │   │   │   └── EpochLossPlot.png
     │   │   └── ...
     │   └── ...
     ├── README.md
