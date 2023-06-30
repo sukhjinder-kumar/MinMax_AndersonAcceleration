@@ -18,9 +18,9 @@ To install git clone the repo. Create a virtual env using `python -m vevn <envNa
     │   └── ...
     ├── Model/
     │   ├── TrainedModel/
-    │   │   └── TestGAN.pt
+    │   │   └── TestNN.pt
     │   └── UntrainedModel/
-    │       ├── TestGAN.py
+    │       ├── TestNN.py
     │       └── ...
     ├── Algorithm/
     │   ├── algorithm1.py
