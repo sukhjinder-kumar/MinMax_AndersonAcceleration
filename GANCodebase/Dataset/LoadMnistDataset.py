@@ -12,6 +12,7 @@ mnistPath = "./Dataset/DatasetFiles/MNIST"
 mnistTrainPath = mnistPath + "/training.pt"
 mnistTestPath = mnistPath + "/test.pt"
 
+
 class CTDatasetMnist(Dataset):
     def __init__(self, filepath):
         self.x, self.y = torch.load(filepath)
@@ -21,6 +22,7 @@ class CTDatasetMnist(Dataset):
         return self.x.shape[0]
     def __getitem__(self, idx):
         return self.x[idx], self.y[idx]
+
 
 mnistTrainDs = CTDatasetMnist(mnistTrainPath)
 mnistTestDs = CTDatasetMnist(mnistTestPath)
