@@ -1,9 +1,12 @@
+# Set base directory in sys.path to allow communication bw modules
 import sys
 sys.path.insert(1,'/Users/sukhkuma/Dev/Programming/Research/MinMax_AA/MinMax_AndersonAcceleration/GANCodebase')
 
+# Import Modules
 from Model.UntrainedModel.TestNN import TestNN
 from Dataset.LoadMnistDataset import mnistTrainDs, mnistTestDs, mnistTrainDl, mnistTestDl
 
+# Import libraries
 import torch
 import torch.nn as nn
 from torch.optim import SGD
