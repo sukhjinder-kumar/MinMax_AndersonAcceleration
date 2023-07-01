@@ -27,7 +27,7 @@ class DatasetNormal(Dataset):
     # Params
     mean = 0
     stdDev = 1
-    numSample = 2*60000
+    numSample = 60000
     dim = 10
     def __init__(self):
         super(Dataset, self).__init__()

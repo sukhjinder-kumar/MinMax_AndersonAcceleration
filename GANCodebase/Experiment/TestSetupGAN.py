@@ -36,14 +36,14 @@ def GLoss(G,D,z):
 def TrainModel(mnistDl,normalDl,G,D,numEpochs):
     dOpt = Adam(
         D.parameters(),
-        lr=0.0001,
+        lr=0.00003,
         betas=(0.9, 0.999),
         eps=1e-8,
         weight_decay=0.01
     )
     gOpt = Adam(
         G.parameters(),
-        lr=0.0001,
+        lr=0.00003,
         betas=(0.9, 0.999),
         eps=1e-8,
         weight_decay=0.01
@@ -52,10 +52,11 @@ def TrainModel(mnistDl,normalDl,G,D,numEpochs):
     dLosses = []
     gLosses = []
     epochs = []
+    N = len(mnistDl)
     
     for epoch in range(numEpochs):
         print(f"Epoch {epoch}")
-        for (mnistBatch,normalBatch) in zip(mnistDl,normalDl):
+        for i, (mnistBatch,normalBatch) in enumerate(zip(mnistDl,normalDl)):
             realData = mnistBatch[0].view(-1,28*28)
             
             # Train D
@@ -72,7 +73,11 @@ def TrainModel(mnistDl,normalDl,G,D,numEpochs):
             gOpt.step()
             gLosses.append(gLoss_.item())
 
-        epochs.append(epoch)
+            # Like percentage epoch completed
+            epochs.append(epoch+i/N)
+
+        epochs.append(epoch+1)
+
         # Check if nan occured
         if math.isnan(gLosses[-1]) or math.isnan(dLosses[-1]):
             break
@@ -92,20 +97,8 @@ normal10DimTrainDl = DataLoader(normal10DimTrainDs, batch_size=batchSize, shuffl
 normal10DimTestDl = DataLoader(normal10DimTestDs, batch_size=batchSize, shuffle=True)
 
 # Train Model
-epochs, gLosses, dLosses = TrainModel(mnistTrainDl,normal10DimTrainDl,G,D,numEpochs=1)
-
-# Viz
-fakeImage = G(normal10DimTrainDs[0]).reshape(28,28)
-plt.imshow(fakeImage.detach().numpy())
-saveFigPath = "./Figure/Experiment/TestSetupGAN/GeneratedImage.png"
-plt.savefig(saveFigPath) # Save viz
-plt.show()
-
-# Save model
-saveGeneratorModelPath = "./Model/TrainedModel/TestGAN/Generator.pt"
-saveDiscriminatorModelPath = "./Model/TrainedModel/TestGAN/Discriminator.pt"
-torch.save(G.state_dict(), saveGeneratorModelPath)
-torch.save(D.state_dict(), saveDiscriminatorModelPath)
+numEpochs = 50 
+epochs, gLosses, dLosses = TrainModel(mnistTrainDl,normal10DimTrainDl,G,D,numEpochs=numEpochs)
 
 # Save loss function in log.txt file
 file = open('./Experiment/log.txt','w')
@@ -115,3 +108,32 @@ file.writelines(str(gLosses))
 file.writelines("dLosses")
 file.writelines(str(dLosses))
 file.close()
+
+# Save model
+saveGeneratorModelPath = "./Model/TrainedModel/TestGAN/Generator.pt"
+saveDiscriminatorModelPath = "./Model/TrainedModel/TestGAN/Discriminator.pt"
+torch.save(G.state_dict(), saveGeneratorModelPath)
+torch.save(D.state_dict(), saveDiscriminatorModelPath)
+
+# Viz: Generated Image
+fakeImage = G(normal10DimTrainDs[0]).reshape(28,28)
+plt.imshow(fakeImage.detach().numpy())
+saveFigPath = "./Figure/Experiment/TestSetupGAN/GeneratedImage.png"
+plt.savefig(saveFigPath) # Save viz
+plt.show()
+
+# Viz: epoch vs Losses
+completedEpochs = int(epochs[-1])
+epochs = epochs.reshape(completedEpochs,-1).mean(axis=1) # along row or 2nd axis (1)
+gLosses = gLosses.reshape(completedEpochs,-1).mean(axis=1)
+dLosses = dLosses.reshape(completedEpochs,-1).mean(axis=1)
+plt.plot(epochs,gLosses,'o--',label='gLosses',color='blue')
+plt.plot(epochs,dLosses,'o--',label='dLosses',color='green')
+plt.xlabel('Epoch Number')
+plt.ylabel('Loss')
+plt.legend()
+plt.title('Avg loss across dataset')
+saveFigPath = "./Figure/Experiment/TestSetupGAN/EpochLossPlot.png"
+plt.savefig(saveFigPath) # Save viz
+plt.show()
+
