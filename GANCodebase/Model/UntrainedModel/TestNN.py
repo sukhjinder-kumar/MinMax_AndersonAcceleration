@@ -1,5 +1,20 @@
 '''
 Torch model definition
+
+Use case:
+>>> from Model.UntrainedModel.TestNN import TestNN
+>>>
+>>> f = TestNN()
+>>> x = mnistTrainDs[0][0]
+>>> x.shape
+torch.Size([1, 28, 28])
+>>> f(x)
+tensor([-0.0520, -0.0050, -0.1206, -0.0306, -0.1516,  0.0956,  0.0816, -0.0283,
+        -0.0700,  0.0969], grad_fn=<SqueezeBackward0>)
+>>> # Ideally pass x.view(1,28*28)
+>>> f(x.view(1,28*28))
+tensor([-0.0520, -0.0050, -0.1206, -0.0306, -0.1516,  0.0956,  0.0816, -0.0283,
+        -0.0700,  0.0969], grad_fn=<SqueezeBackward0>)
 '''
 
 import torch
@@ -7,7 +22,7 @@ import torch.nn as nn
 
 class TestNN(nn.Module):
     '''
-    For MNIST dataset
+    For MNIST dataset. Take (-1,28*28) tensors
     '''
     def __init__(self):
         super().__init__()

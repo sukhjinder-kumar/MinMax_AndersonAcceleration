@@ -13,7 +13,7 @@ To install git clone the repo. Create a virtual env using `python -m vevn <envNa
 .
 └── GANCode/
     ├── Dataset/
-    │   ├── DatasetFiles
+    │   ├── DatasetFiles/
     │   ├── LoadMnistDataset.py
     │   └── ...
     ├── Model/

@@ -1,5 +1,24 @@
 '''
 For each dataset have train and test Dataset and Dataloader
+
+Use case:
+>>> from Dataset.LoadMnistDataset import mnistTrainDs,mnistTestDs,mnistTrainDl,mnistTestDl
+>>>
+>>> x,y = mnistTrainDs[0]
+>>> x.shape # Redundant extra axis
+torch.Size([1, 28, 28])
+>>> y.shape
+torch.Size([10])
+>>> # slicing not allowed in mnistTrainDs
+>>>
+>>> for batch in mnistTrainDl:
+...     # batch is a list [x,y]
+...     print(batch[0].shape)
+...     print(batch[1].shape)
+...     break
+...
+torch.Size([5, 1, 28, 28])
+torch.Size([5, 10])
 '''
 
 import torch
