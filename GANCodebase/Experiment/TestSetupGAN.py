@@ -97,7 +97,7 @@ normal10DimTrainDl = DataLoader(normal10DimTrainDs, batch_size=batchSize, shuffl
 normal10DimTestDl = DataLoader(normal10DimTestDs, batch_size=batchSize, shuffle=True)
 
 # Train Model
-numEpochs = 50 
+numEpochs = 100
 epochs, gLosses, dLosses = TrainModel(mnistTrainDl,normal10DimTrainDl,G,D,numEpochs=numEpochs)
 
 # Save loss function in log.txt file
