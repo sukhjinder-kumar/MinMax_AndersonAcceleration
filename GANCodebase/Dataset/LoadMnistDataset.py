@@ -27,6 +27,7 @@ from torchvision.datasets import MNIST
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 
+
 # MNIST
 
 mnistPath = "./Dataset/DatasetFiles"

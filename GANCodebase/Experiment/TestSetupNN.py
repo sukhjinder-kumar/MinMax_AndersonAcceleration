@@ -1,6 +1,11 @@
-# Set base directory in sys.path to allow communication bw modules
+# Boilerplate for each experiment file. To allow for module calling and messy relative path issues
 import sys
-sys.path.insert(1,'/Users/sukhkuma/Dev/Programming/Research/MinMax_AA/MinMax_AndersonAcceleration/GANCodebase')
+import os
+from dotenv import load_dotenv
+load_dotenv()
+basePath = os.getenv('basePath')
+sys.path.insert(1,basePath) # For modules
+os.chdir(basePath) # Every relative path now from basePath
 
 # Import Modules
 from Model.UntrainedModel.TestNN import TestNN
