@@ -28,9 +28,9 @@ class DatasetNormal(Dataset):
     mean = 0
     stdDev = 1
     numSample = 60000
-    dim = 10
-    def __init__(self):
+    def __init__(self, dim=10):
         super(Dataset, self).__init__()
+        self.dim = dim
         self.x = torch.normal(self.mean,self.stdDev,size=(self.numSample,self.dim))
     def __len__(self):
         return self.x.shape[0]
