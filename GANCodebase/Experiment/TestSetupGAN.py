@@ -11,6 +11,7 @@ os.chdir(basePath) # Every relative path now from basePath
 from Model.UntrainedModel.TestGAN import Generator, Discriminator
 from Dataset.LoadMnistDataset import mnistTrainDs, mnistTestDs
 from Dataset.LoadNormal10DimData import normal10DimTrainDs, normal10DimTestDs
+from Algorithm.AdamW import AdamW # replace Adam with AdamW. Thats it!
 
 # Import Libraries
 import torch
@@ -97,7 +98,7 @@ normal10DimTrainDl = DataLoader(normal10DimTrainDs, batch_size=batchSize, shuffl
 normal10DimTestDl = DataLoader(normal10DimTestDs, batch_size=batchSize, shuffle=True)
 
 # Train Model
-numEpochs = 100
+numEpochs = 1
 epochs, gLosses, dLosses = TrainModel(mnistTrainDl,normal10DimTrainDl,G,D,numEpochs=numEpochs)
 
 # Save loss function in log.txt file
