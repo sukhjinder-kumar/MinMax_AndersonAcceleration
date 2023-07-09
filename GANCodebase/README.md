@@ -61,4 +61,12 @@ now you can call any module by simply `import Dataset.LoadMnistDataset` or use p
 
 Names of file and directories are self explanatory. Algorithm goes in `Algorithm/<AlgoName>.py` file, torch model defintion goes in `Model/UntrainedModel/<ModelName>.py`, trained model stored in its counter part, dataset handling goes in `Dataset/Load<DatasetName>.py`, whereas raw data goes in `DatasetFiles`. Figures goes in `Figure` folder. All the testing, experiments like finding inception score goes in `Experiment` folder.
 
-@TODO: Define format for each Directory, like what all should be exported especially in algorithms, datasets, and models
+@TODO:
+
+- Define format for each Directory, like what all should be exported especially in algorithms, datasets, and models
+
+- Add verify using TestSetup files.
+
+- Docs to each file like algorithms
+
+- Update githubPytorchfile

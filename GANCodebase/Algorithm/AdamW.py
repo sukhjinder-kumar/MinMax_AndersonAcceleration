@@ -2,6 +2,7 @@ from torch.optim import Optimizer
 import torch
 import math
 
+
 class AdamW(Optimizer):
     '''
     Implement Adam algorithm with weight decay fix
@@ -75,4 +76,3 @@ class AdamW(Optimizer):
                     p.data.add_(-group['lr'] * group['weight_decay'], p.data)
 
         return loss
-

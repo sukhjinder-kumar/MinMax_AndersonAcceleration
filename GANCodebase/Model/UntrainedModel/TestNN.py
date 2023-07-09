@@ -20,6 +20,7 @@ tensor([-0.0520, -0.0050, -0.1206, -0.0306, -0.1516,  0.0956,  0.0816, -0.0283,
 import torch
 import torch.nn as nn
 
+
 class TestNN(nn.Module):
     '''
     For MNIST dataset. Take (-1,28*28) tensors
