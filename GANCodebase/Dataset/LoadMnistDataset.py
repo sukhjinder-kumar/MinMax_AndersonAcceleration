@@ -33,7 +33,7 @@ import torch.nn.functional as F
 mnistPath = "./Dataset/DatasetFiles"
 transform = transforms.Compose([
     transforms.ToTensor(), # Convert to tensor
-    transforms.Normalize((0,), (1,)) # Mean 0 and Std Dev 1
+    transforms.Normalize(mean=(0.5,), std=(0.5,))
 ])
 targetTransform = transforms.Lambda(
     lambda y: torch.zeros(10, dtype=torch.float).scatter_(0, torch.tensor(y), value=1)) # one hot encoding

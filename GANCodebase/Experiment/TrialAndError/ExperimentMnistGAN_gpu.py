@@ -125,7 +125,7 @@ normal100DimGTrainDl = DataLoader(normal100DimGTrainDs, batch_size=batchSize, sh
 
 
 # Train Model
-numEpochs = 1
+numEpochs = 100
 epochs, gLosses, dLosses = TrainModel(mnistTrainDl,normal100DimDTrainDl,normal100DimGTrainDl,G,D,numEpochs=numEpochs)
 endTime = time.time()
 

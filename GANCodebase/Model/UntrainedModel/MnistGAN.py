@@ -18,9 +18,9 @@ class Generator(nn.Module):
 
     def forward(self, z):
         z = z.view(-1,self.dim)
-        z = F.leaky_relu(self.layer1(z), 0.2)
-        z = F.leaky_relu(self.layer2(z), 0.2)
-        z = F.leaky_relu(self.layer3(z), 0.2)
+        z = F.leaky_relu(self.layer1(z), 0.2, inplace=True)
+        z = F.leaky_relu(self.layer2(z), 0.2, inplace=True)
+        z = F.leaky_relu(self.layer3(z), 0.2, inplace=True)
         z = F.tanh(self.layer4(z))
         return z.squeeze()
 
@@ -39,11 +39,11 @@ class Discriminator(nn.Module):
 
     def forward(self, x):
         x = x.view(-1,28*28)
-        x = F.leaky_relu(self.layer1(x), 0.2)
+        x = F.leaky_relu(self.layer1(x), 0.2, inplace=True)
         x = F.dropout(x, 0.3)
-        x = F.leaky_relu(self.layer2(x), 0.2)
+        x = F.leaky_relu(self.layer2(x), 0.2, inplace=True)
         x = F.dropout(x, 0.3)
-        x = F.leaky_relu(self.layer3(x), 0.2)
+        x = F.leaky_relu(self.layer3(x), 0.2, inplace=True)
         x = F.dropout(x, 0.3)
         x = F.sigmoid(self.layer4(x))
         return x.squeeze()
