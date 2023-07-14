@@ -39,7 +39,7 @@ def TrainModel(dl, f, num_epochs):
 
 
 f = TestNN()
-numEpochs = 2
+numEpochs = 1
 epochs, losses = TrainModel(mnistTrainDl, f, num_epochs=numEpochs)
 
 # Viz
